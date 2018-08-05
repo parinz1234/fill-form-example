@@ -12,24 +12,6 @@ import { Object } from 'core-js';
 
 const exampleInitialState = {
   data: [
-    {
-      id: 1,
-      data: {
-        firstForm: {
-          firstname: 'hello1',
-          lastname: 'world'
-        },
-        secondForm: {
-          gender: 'male',
-          age: 24
-        },
-        thirdForm: {
-          province: 'Nonthaburi',
-          country: 'Thailand'
-        }
-      },
-      status: 'finish'
-    }
   ]
 }
 
@@ -83,7 +65,7 @@ export const reducer = (state, action) => {
         })
       })
       break;
-    case actionTypes.SUBMIT_THIRD:
+    case actionTypes.SUBMIT_PREVIEW:
       return Object.assign({}, state,{
         data: state.data.map(value => {
           if (value.id === action.id) {
@@ -103,7 +85,8 @@ export const reducer = (state, action) => {
 
 // action
 export const submitFirst = (data) => dispatch => {
-  return dispatch({ type: actionTypes.SUBMIT_FIRST, data: data.formData })
+  console.log(data)
+  return dispatch({ type: actionTypes.SUBMIT_FIRST, data: data })
 }
 
 export const submitSecond = (data) => dispatch => {

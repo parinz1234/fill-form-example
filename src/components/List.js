@@ -7,6 +7,7 @@ import {
 class List extends Component {  
   render () {
     const { data } = this.props
+    console.log(data)
     return (
       <div>
         <table>
@@ -24,8 +25,8 @@ class List extends Component {
               data && data.map((value, index) => 
                 <tr key={value.id}>
                   <td>{index}</td>
-                  <td>{value.data.firstForm.firstname}</td>
-                  <td>{value.data.firstForm.lastname}</td>
+                  <td>{value.firstForm.firstname}</td>
+                  <td>{value.firstForm.lastname}</td>
                   <td>{value.status}</td>
                   <td>
                     {

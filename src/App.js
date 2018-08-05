@@ -20,7 +20,7 @@ class App extends Component {
           <div>
             <ul>
               <li><Link to="/">List</Link></li>
-              <li><Link to="/add">Add data</Link></li>
+              <li><Link to="/form">Add data</Link></li>
             </ul>
             <hr />
             <Route exact path="/" component={List} />

@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import {
+  FirstForm,
+  SecondForm,
+  ThirdForm,
+  PreviewForm
+} from './forms'
+
 const TabMenu = styled.div`
   display: flex;
 `
@@ -48,90 +55,6 @@ const TabComponent = ({ tab, changeTab }) => {
     </TabMenu>
   )
 }
-
-const FirstForm  = () => {
-  return (
-    <div>
-      <form>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label htmlFor="title">Description</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label htmlFor="title">Firstname</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label htmlFor="title">Lastname</label>
-          <input type="text" />
-        </div>
-        <div>
-          <button type="submit">submit</button>
-        </div>
-      </form>
-    </div>
-  )
-}
-
-const SecondForm  = () => {
-  return (
-    <div>
-      <form>
-        <div>
-          <label htmlFor="title">Gender</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label htmlFor="title">Age</label>
-          <input type="text" />
-        </div>
-        <div>
-          <button type="submit">submit</button>
-        </div>
-      </form>
-    </div>
-  )
-}
-
-const ThirdForm  = () => {
-  return (
-    <div>
-      <form>
-        <div>
-          <label htmlFor="title">Province</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label htmlFor="title">Country</label>
-          <input type="text" />
-        </div>
-      </form>
-    </div>
-  )
-}
-
-const PreviewForm  = () => {
-  return (
-    <div>
-      <div>
-        <p>Title: </p>
-        <p>Description: </p>
-        <p>Firstname: </p>
-        <p>Lastname: </p>
-        <p>Gender: </p>
-        <p>Age: </p>
-        <p>Province: </p>
-        <p>Country: </p>
-      </div>
-    </div>
-  )
-}
-
-
 
 const FormComponent = ({ tab }) => {
   let renderForm
