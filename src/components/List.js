@@ -1,38 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   Link
 } from 'react-router-dom'
-/*
-  status
-    first
-    second
-    third
-    finish
-*/
 
-const data = [
-  {
-    id: 1,
-    data: {
-      firstForm: {
-        firstname: 'hello',
-        lastname: 'world'
-      },
-      secondForm: {
-        gender: 'male',
-        age: 24
-      },
-      thirdForm: {
-        province: 'Nonthaburi',
-        country: 'Thailand'
-      }
-    },
-    status: 'finish'
-  }
-]
-
-class List extends Component {
+class List extends Component {  
   render () {
+    const { data } = this.props
     return (
       <div>
         <table>
@@ -76,4 +50,9 @@ class List extends Component {
   }
 }
 
-export default List
+const mapStateToProps = (state) => {
+  const { data } = state
+  return { data }
+}
+
+export default connect(mapStateToProps)(List)
