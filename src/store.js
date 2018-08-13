@@ -12,14 +12,16 @@ import { Object } from 'core-js';
 
 const exampleInitialState = {
   data: [
-  ]
+  ],
+  current: null
 }
 
 export const actionTypes = {
   SUBMIT_FIRST: 'SUBMIT_FIRST',
   SUBMIT_SECOND: 'SUBMIT_SECOND',
   SUBMIT_THIRD: 'SUBMIT_THIRD',
-  SUBMIT_PREVIEW: 'SUBMIT_PREVIEW'
+  SUBMIT_PREVIEW: 'SUBMIT_PREVIEW',
+  SET_CURRENT_FORM: 'SET_CURRENT_FORM'
 }
 
 // reducer
@@ -27,6 +29,7 @@ export const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.SUBMIT_FIRST:
       return Object.assign({}, state,{
+        current: state.data.length + 1,
         data: [
           ...state.data,
           {
@@ -78,6 +81,11 @@ export const reducer = (state, action) => {
         })
       })
       break;
+    case actionTypes.SET_CURRENT_FORM:
+      return Object.assign({}, state, {
+        current: action.id
+      })
+      break;
     default:
       return state
   }
@@ -85,8 +93,7 @@ export const reducer = (state, action) => {
 
 // action
 export const submitFirst = (data) => dispatch => {
-  console.log(data)
-  return dispatch({ type: actionTypes.SUBMIT_FIRST, data: data })
+  return dispatch({ type: actionTypes.SUBMIT_FIRST, data: data.formData })
 }
 
 export const submitSecond = (data) => dispatch => {
@@ -99,6 +106,10 @@ export const submitThird = (data) => dispatch => {
 
 export const submitPreview = (data) => dispatch => {
   return dispatch({ type: actionTypes.SUBMIT_PREVIEW, id: data.id})
+}
+
+export const setCurrentForm = (data) => dispatch => {
+  return dispatch({ type: actionTypes.SET_CURRENT_FORM, id: data.id })
 }
 
 export function initializeStore (initialState = exampleInitialState) {

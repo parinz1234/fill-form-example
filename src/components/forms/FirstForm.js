@@ -9,16 +9,19 @@ class FirstForm extends Component {
     lastname: ''
   }
 
-  handleInput = (e) => {
+  handleInput = e => {
     this.setState({ [e.target.getAttribute('name')]: e.target.value })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     this.props.submitFirst({
-      firstname: this.state.firstname,
-      lastname: this.state.lastname
+      formData: {
+        firstname: this.state.firstname,
+        lastname: this.state.lastname
+      }
     })
+    this.props.changeTab('second')
   }
 
   render () {

@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  Link
-} from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { setCurrentForm } from '../store'
 
 class List extends Component {  
+
+  handleEdit  = (e, id) => {
+    e.preventDefault()
+    this.props.setCurrentForm({ id: id })
+    this.props.history.push(`/form/${id}`)
+  }
+
   render () {
     const { data } = this.props
-    console.log(data)
     return (
       <div>
         <table>
@@ -30,7 +35,10 @@ class List extends Component {
                   <td>{value.status}</td>
                   <td>
                     {
-                      <Link to={`/form/${value.id}`}>
+                      <a
+                        onClick={(e) => this.handleEdit(e, value.id)}
+                        href=""
+                        >
                         {
                           value.status !== 'finish'
                           ?
@@ -38,7 +46,7 @@ class List extends Component {
                           :
                             'View'
                         }
-                      </Link>
+                      </a>
                     }
                   </td>
                 </tr>
@@ -51,9 +59,15 @@ class List extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { data } = state
   return { data }
 }
 
-export default connect(mapStateToProps)(List)
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentForm: bindActionCreators(setCurrentForm, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List)

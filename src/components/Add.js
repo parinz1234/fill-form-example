@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import {
@@ -56,23 +57,23 @@ const TabComponent = ({ tab, changeTab }) => {
   )
 }
 
-const FormComponent = ({ tab }) => {
+const FormComponent = ({ tab, changeTab }) => {
   let renderForm
   switch (tab) {
     case 'first':
-      renderForm = <FirstForm />
+      renderForm = <FirstForm changeTab={changeTab} />
       break;
     case 'second':
-      renderForm = <SecondForm />
+      renderForm = <SecondForm changeTab={changeTab} />
       break;
     case 'third':
-      renderForm = <ThirdForm />
+      renderForm = <ThirdForm changeTab={changeTab} />
       break;
     case 'preview':
-      renderForm = <PreviewForm />
+      renderForm = <PreviewForm changeTab={changeTab} />
       break;
     default:
-      renderForm = <FirstForm />
+      renderForm = <FirstForm changeTab={changeTab} />
   }
   return (
     <FormContainer>
@@ -91,6 +92,7 @@ class Add extends Component {
     })
   }
   render () {
+    console.log(this.props)
     return (
       <div>
         <TabComponent
@@ -99,10 +101,22 @@ class Add extends Component {
           />
         <FormComponent
           tab={this.state.tab}
+          changeTab={this.changeTab}
           />
       </div>
     )
   }
 }
 
-export default Add
+const mapStateToProps = state => {
+  const { data, current } = state
+  if (current)
+    return {
+      data: data.filter(value => value.id === current),
+      current: current
+    }
+  else
+  return {}
+}
+
+export default connect(mapStateToProps)(Add)
